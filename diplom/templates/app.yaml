@@ -15,10 +15,10 @@ spec:
      initContainers:
         - name: run-migrations
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          command: ["sh", "-c", "python manage.py migrate"]
+          command: ["sh", "-c", "sleep 20 && python manage.py migrate"]
           env:
             - name: DB_HOST
-              value: "$(DB_SERVICE_HOST)"
+              value: "db"
             - name: DB_NAME
               value: {{ .Values.postgres.dbName | quote }}
             - name: DB_USER
@@ -34,7 +34,7 @@ spec:
             - containerPort: {{ .Values.app.containerPort }}
           env:
             - name: DB_HOST
-              value: "$(DB_SERVICE_HOST)"
+              value: "db"
             - name: DB_NAME
               value: {{ .Values.postgres.dbName | quote }}
             - name: DB_USER
