@@ -39,3 +39,14 @@ jobs:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
+
+      - name: cubeconf
+        uses: azure/k8s-set-context@v4
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
+
+      - name: helm
+        run: |
+          helm upgrade --install app ./diplom \
+            --set image.tag=${{ steps.meta.outputs.version }}
