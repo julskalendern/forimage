@@ -19,7 +19,7 @@ spec:
           command: ["sh", "-c", "sleep 20 && python manage.py migrate"]
           env:
             - name: DB_HOST
-              value: "db"
+              value: "$(DB_SERVICE_HOST)"
             - name: DB_NAME
               value: {{ .Values.postgres.dbName | quote }}
             - name: DB_USER
@@ -35,7 +35,7 @@ spec:
             - containerPort: {{ .Values.app.containerPort }}
           env:
             - name: DB_HOST
-              value: "db"
+              value: "$(DB_SERVICE_HOST)"
             - name: DB_NAME
               value: {{ .Values.postgres.dbName | quote }}
             - name: DB_USER
