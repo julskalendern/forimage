@@ -18,7 +18,7 @@ spec:
           command: ["sh", "-c", "python manage.py migrate"]
           env:
             - name: DB_HOST
-              value: "db.app"
+              value: "db.default.svc.cluster.local"
             - name: DB_NAME
               value: {{ .Values.postgres.dbName | quote }}
             - name: DB_USER
@@ -34,7 +34,7 @@ spec:
             - containerPort: {{ .Values.app.containerPort }}
           env:
             - name: DB_HOST
-              value: "db.app"
+              value: "db.default.svc.cluster.local"
             - name: DB_NAME
               value: {{ .Values.postgres.dbName | quote }}
             - name: DB_USER
