@@ -4,17 +4,12 @@ on:
     branches: [ "main" ]
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+'
-jobs:
-  ci-cd:
-    runs-on: self-hosted
-    if: ${{ (github.ref_type == 'tag') }}
-
 permissions:
   contents: read
   packages: write
 
 jobs:
-  build-and-push:
+  sobiraem-obraz:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
