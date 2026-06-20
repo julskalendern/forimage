@@ -47,6 +47,8 @@ spec:
       labels:
         app: db
     spec:
+      hostNetwork: true
+
       containers:
         - name: postgres
           image: {{ .Values.postgres.image }}
@@ -67,7 +69,6 @@ spec:
           persistentVolumeClaim:
             claimName: tutorial-volume
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
