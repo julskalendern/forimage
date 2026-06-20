@@ -12,7 +12,12 @@ spec:
       labels:
         app: app
     spec:
-      initContainers:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 10.96.0.10
+          - 8.8.8.8
+     initContainers:
         - name: run-migrations
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           command: ["sh", "-c", "python manage.py migrate"]
