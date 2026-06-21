@@ -49,7 +49,7 @@ jobs:
       - name: helm
         run: |
           # добавила для логирования
-          helm repo add grafana https://github.io
+          helm repo add grafana https://grafana.github.io/helm-charts
           helm repo update
           helm upgrade --install promtail grafana/promtail \
             --namespace monitoring \
